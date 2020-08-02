@@ -16,41 +16,52 @@ public class PlayerController : MonoBehaviour
     public bool playerIsAlive = true; //Is the player currently alive?
     public bool playerCanMove = false; //Can the player currently move?
 
-    private GameManager myGameManager; //A reference to the GameManager in the scene.
+    public GameManager myGameManager; //A reference to the GameManager in the scene.
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        playerLivesRemaining = playerTotalLives;
+        gameObject.transform.position = new Vector3(0, -5, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.W))
-       {
+        if (Input.GetKeyDown(KeyCode.W) && gameObject.transform.position.y < myGameManager.levelConstraintTop)
+        {
            transform.position += Vector3.up;
        }
-       if (Input.GetKeyDown(KeyCode.A))
+       if (Input.GetKeyDown(KeyCode.A) && gameObject.transform.position.x > myGameManager.levelConstraintLeft)
        {
            transform.position += Vector3.left;
        }
-       if (Input.GetKeyDown(KeyCode.S))
+       if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > myGameManager.levelConstraintBottom)
        {
            transform.position += Vector3.down;
        }
-       if (Input.GetKeyDown(KeyCode.D))
+       if (Input.GetKeyDown(KeyCode.D) && gameObject.transform.position.x < myGameManager.levelConstraintRight)
        {
-            //transform.position += Vector3.right;
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(50, 0));
+            transform.position += Vector3.right;
        }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        //Instantiate(RedPH, transform.position, Quaternion.identity);
-        if (gameObject.tag == "Enemy")
+        if (col.tag == "Enemy") 
         {
-            Destroy(this.gameObject);
+            if (playerLivesRemaining > 0)
+            {
+                //gameObject.SetActive(false);
+                gameObject.transform.position = myGameManager.spawnpoint;
+                print("DEATH");
+                playerLivesRemaining -= 1;
+                //gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+                print("Game Over");
+            }
         }
     }
 }
