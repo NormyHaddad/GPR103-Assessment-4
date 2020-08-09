@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerLivesRemaining = playerTotalLives;
-        gameObject.transform.position = new Vector3(0, -5, 0);
+        gameObject.transform.position = myGameManager.spawnpoint;
     }
 
     // Update is called once per frame
@@ -30,24 +30,28 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) && gameObject.transform.position.y < myGameManager.levelConstraintTop)
         {
-           transform.position += Vector3.up;
+            transform.SetParent(null);
+            transform.position += Vector3.up;
        }
        if (Input.GetKeyDown(KeyCode.A) && gameObject.transform.position.x > myGameManager.levelConstraintLeft)
        {
-           transform.position += Vector3.left;
+            transform.SetParent(null);
+            transform.position += Vector3.left;
        }
        if (Input.GetKeyDown(KeyCode.S) && gameObject.transform.position.y > myGameManager.levelConstraintBottom)
        {
-           transform.position += Vector3.down;
+            transform.SetParent(null);
+            transform.position += Vector3.down;
        }
        if (Input.GetKeyDown(KeyCode.D) && gameObject.transform.position.x < myGameManager.levelConstraintRight)
        {
+            transform.SetParent(null);
             transform.position += Vector3.right;
        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy") 
+        if (col.transform.GetComponent<VehicleController>() != null) 
         {
             if (playerLivesRemaining > 0)
             {
@@ -62,6 +66,10 @@ public class PlayerController : MonoBehaviour
                 gameObject.SetActive(false);
                 print("Game Over");
             }
+        }
+        if (col.transform.GetComponent<LogController>() != null)
+        {
+            transform.SetParent(col.transform);
         }
     }
 }

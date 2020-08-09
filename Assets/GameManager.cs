@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Setup")]
-    public Vector3 spawnpoint = new Vector3(0, -5, 0);
+    public Vector3 spawnpoint = new Vector3(0, -7, 0);
 
     [Header("Scoring")]
     public int currentScore = 0; //The current score in this round.
@@ -25,9 +25,7 @@ public class GameManager : MonoBehaviour
     public float totalGameTime; //The maximum amount of time or the total time avilable to the player.
     public float gameTimeRemaining; //The current elapsed time
 
-    [Header("Gameplay Values")]
-    public float vehicleSpeed;
-    public float logSpeed;
+    //[Header("Gameplay Values")]
 
     // Start is called before the first frame update
     void Start()
