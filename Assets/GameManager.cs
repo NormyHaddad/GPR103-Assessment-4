@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// This script is to be attached to a GameObject called GameManager in the scene. It is to be used to manager the settings and overarching gameplay loop.
@@ -25,7 +28,11 @@ public class GameManager : MonoBehaviour
     public float totalGameTime; //The maximum amount of time or the total time avilable to the player.
     public float gameTimeRemaining; //The current elapsed time
 
-    //[Header("Gameplay Values")]
+    [Header("Endgame UI")]
+    public GameObject endScreen;
+    public GameObject replayButton;
+    public TMP_Text endMessage;
+    public TMP_Text scoreWindow;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +44,49 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Restart()
+    {
+        print("Restart the game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    /*
+    public void SetButtonColour(float R, float G)
+    {
+        Color nc;
+        nc.r = R;
+        nc.g = G;
+        nc.b = 0;
+        nc.a = 1;
+        replayButton.GetComponent<Button>().colors.normalColor = nc;
+        nc.g = G - 0.1f;
+        nc.r = R - 0.1f;
+        buttonColours.highlightedColor = nc;
+        nc.g = G - 0.25f;
+        nc.r = R - 0.25f;
+        buttonColours.pressedColor = nc;
+        
+    }*/
+
+    public void GameOver(bool isWin = true)
+    {
+        if (isWin)
+        {
+            endMessage.text = "Congratulations!";
+            //SetButtonColour(0, 1);
+        }
+        else if (!isWin)
+        {
+            endMessage.text = "My condolences";
+            //SetButtonColour(1, 0);
+        }
+        endScreen.SetActive(true);
+    }
+
+    public void AddScore(int amount)
+    {
+        scoreWindow.text = "Score: " + amount;
     }
 }

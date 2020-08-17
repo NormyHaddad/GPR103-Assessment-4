@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Platform
   - Solid
+  - Endzone
   layers:
   - Default
   - TransparentFX
