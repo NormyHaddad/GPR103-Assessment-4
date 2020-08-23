@@ -52,40 +52,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    /*
-    public void SetButtonColour(float R, float G)
+    public void Quit()
     {
-        Color nc;
-        nc.r = R;
-        nc.g = G;
-        nc.b = 0;
-        nc.a = 1;
-        replayButton.GetComponent<Button>().colors.normalColor = nc;
-        nc.g = G - 0.1f;
-        nc.r = R - 0.1f;
-        buttonColours.highlightedColor = nc;
-        nc.g = G - 0.25f;
-        nc.r = R - 0.25f;
-        buttonColours.pressedColor = nc;
-        
-    }*/
+        Application.Quit();
+    }
 
     public void GameOver(bool isWin = true)
     {
         if (isWin)
         {
-            endMessage.text = "Congratulations!";
-            //SetButtonColour(0, 1);
+            endMessage.text = "Hooray!";
         }
         else if (!isWin)
         {
-            endMessage.text = "My condolences";
-            //SetButtonColour(1, 0);
+            endMessage.text = "Aww man";
         }
         endScreen.SetActive(true);
     }
 
-    public void AddScore(int amount)
+    public void UpdateScore(int amount)
     {
         scoreWindow.text = "Score: " + amount;
     }

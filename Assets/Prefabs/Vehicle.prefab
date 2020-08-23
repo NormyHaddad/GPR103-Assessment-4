@@ -71,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -329971419
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4dde06e3232b59b4ca707924e6dffe93, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6165191429657271683
@@ -117,10 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8af75575b873aa478f77cf01510ada1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGameManager: {fileID: 0}
   moveDirection: -1
   speed: 10
-  startingPosition: {x: 0, y: 0}
+  startPosition: {x: 0, y: 0}
   endPosition: {x: 0, y: 0}
 --- !u!61 &6165191429657271682
 BoxCollider2D:

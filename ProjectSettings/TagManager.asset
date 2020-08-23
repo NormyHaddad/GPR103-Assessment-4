@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Solid
   - Endzone
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,15 @@ TagManager:
   - name: Background
     uniqueID: 1789378663
     locked: 0
-  - name: Foreground
+  - name: Water
+    uniqueID: 275240875
+    locked: 0
+  - name: Foreground1
     uniqueID: 3964995877
+    locked: 0
+  - name: Foreground2
+    uniqueID: 3220241599
+    locked: 0
+  - name: Player
+    uniqueID: 556558039
     locked: 0
